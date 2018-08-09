@@ -6,8 +6,7 @@ import Dashboard from './Dashboard'
 
 class App extends Component {
   componentDidMount(){
-    this.props.dispatch(handleInitialData())
-    console.log(this.props)
+    this.props.dispatch(handleInitialData())    
   }
   render() {
     return (
