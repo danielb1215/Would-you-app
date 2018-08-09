@@ -23,7 +23,7 @@ class App extends Component {
     )
   }
 }
-function mapStateToProps({ user }){
+function mapStateToProps({ users }){
   return{
     users,
   }
