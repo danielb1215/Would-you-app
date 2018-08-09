@@ -9,11 +9,11 @@ class Dashboard extends Component {
             <div>
                 <h3>Your TimeLine</h3>
                 <ul>
-                    {/*this.props.users.map((users) =>(
+                    {this.props.users.map((users) =>(
                         <li >
                             {users}
                         </li>
-                    ))*/}
+                    ))}
 
                 </ul>
             </div>
