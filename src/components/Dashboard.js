@@ -1,30 +1,64 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Login from './Login'
+import Questions from './Questions'
+import { Tabs, Tab } from 'react-bootstrap'
 
 class Dashboard extends Component {
     render(){
-        console.log(this.props)
-        const { users } = this.props
-        return(
+
+        const { answeredId, unAnsweredId } = this.props
+        return(        
             <div>
-                <h3>Your TimeLine</h3>
-                <ul>
-                    {this.props.users.map((users) =>(
-                        <li >
-                            {users}
+                {this.props.authedUser === null
+                ?<Login try='yes'/>
+                :<Tabs defaultActiveKey={1} id="uncontrolled-tab-example">                    
+                    <Tab eventKey={1} title="UnAnswered">
+                    <ul>
+                        {unAnsweredId.map((id) =>(
+                            <li key={id}>
+                                <Questions id={id} />
+                            </li>
+                        ))}
+
+                    </ul>
+                    </Tab> 
+                    <Tab eventKey={2} title="Answered">
+                    <ul>
+                    {answeredId.map((id) =>(
+                        <li key={id}>
+                            <Questions id={id} />
                         </li>
                     ))}
-
-                </ul>
+                    </ul>
+                    </Tab>  
+                </Tabs>}               
             </div>
         )
     }
 }
 
-function mapStateToProps({ users, questions }){
+function mapStateToProps({ questions, authedUser }){
+    const unAnswered = Object.keys(questions)
+    .filter( q => (
+        !questions[q].optionOne.votes.includes(authedUser) &&
+        !questions[q].optionTwo.votes.includes(authedUser)
+    ))
+    .sort((a,b) => (
+        questions[b].timestamp - questions[a].timestamp
+    ))
+    const answered = Object.keys(questions)
+    .filter( q => (
+        questions[q].optionOne.votes.includes(authedUser) ||
+        questions[q].optionTwo.votes.includes(authedUser)
+    ))
+    .sort((a,b) => (
+        questions[b].timestamp - questions[a].timestamp
+    ))
     return{
-       users,
-       questions
+        authedUser,
+        answeredId: answered,
+        unAnsweredId: unAnswered
     }
 }
 

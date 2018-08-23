@@ -1,8 +1,9 @@
+let authed_user = 'daniel';
 let users = {
   sarahedo: {
     id: 'sarahedo',
     name: 'Sarah Edo',
-    avatarURL: 'https://www.google.com.co/imgres?imgurl=https%3A%2F%2Fraw.githubusercontent.com%2FAshwinvalento%2Fcartoon-avatar%2Fmaster%2Flib%2Fimages%2Ffemale%2F10.png&imgrefurl=https%3A%2F%2Fgithub.com%2FAshwinvalento%2Fcartoon-avatar&docid=_mb6kaAToygGzM&tbnid=mVl0_eGNq-amzM%3A&vet=10ahUKEwiW-c_T793cAhWJzlkKHcOKDN8QMwgzKAIwAg..i&w=185&h=185&safe=active&bih=796&biw=1442&q=avatar%20url&ved=0ahUKEwiW-c_T793cAhWJzlkKHcOKDN8QMwgzKAIwAg&iact=mrc&uact=8' ,
+    avatarURL: '../media/woman.png' ,
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
       "6ni6ok3ym7mf1p33lnez": 'optionOne',
@@ -14,7 +15,7 @@ let users = {
   tylermcginnis: {
     id: 'tylermcginnis',
     name: 'Tyler McGinnis',
-    avatarURL: 'https://www.google.com.co/imgres?imgurl=https%3A%2F%2Fraw.githubusercontent.com%2FAshwinvalento%2Fcartoon-avatar%2Fmaster%2Flib%2Fimages%2Ffemale%2F10.png&imgrefurl=https%3A%2F%2Fgithub.com%2FAshwinvalento%2Fcartoon-avatar&docid=_mb6kaAToygGzM&tbnid=mVl0_eGNq-amzM%3A&vet=10ahUKEwiW-c_T793cAhWJzlkKHcOKDN8QMwgzKAIwAg..i&w=185&h=185&safe=active&bih=796&biw=1442&q=avatar%20url&ved=0ahUKEwiW-c_T793cAhWJzlkKHcOKDN8QMwgzKAIwAg&iact=mrc&uact=8' ,
+    avatarURL: '../media/men.jpg' ,
     answers: {
       "vthrdm985a262al8qx3do": 'optionOne',
       "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -24,7 +25,7 @@ let users = {
   johndoe: {
     id: 'johndoe',
     name: 'John Doe',
-    avatarURL: 'https://www.google.com.co/imgres?imgurl=https%3A%2F%2Fraw.githubusercontent.com%2FAshwinvalento%2Fcartoon-avatar%2Fmaster%2Flib%2Fimages%2Ffemale%2F10.png&imgrefurl=https%3A%2F%2Fgithub.com%2FAshwinvalento%2Fcartoon-avatar&docid=_mb6kaAToygGzM&tbnid=mVl0_eGNq-amzM%3A&vet=10ahUKEwiW-c_T793cAhWJzlkKHcOKDN8QMwgzKAIwAg..i&w=185&h=185&safe=active&bih=796&biw=1442&q=avatar%20url&ved=0ahUKEwiW-c_T793cAhWJzlkKHcOKDN8QMwgzKAIwAg&iact=mrc&uact=8' ,
+    avatarURL: '../media/men1.png' ,
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',
@@ -113,6 +114,21 @@ let questions = {
       text: 'write Swift'
     }
   },
+}
+// Here I made a function to update the authed_user
+export function updateAuthed_user(user){
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      authed_user = user;
+      res(user);
+    }, 1000);
+  });
+}
+// Here I made a function to get the currently authed_user
+export function _getAuthedUser(){
+  return new Promise((res, rej) => {
+    setTimeout(() => res({...authed_user}), 1000)
+  })
 }
 
 function generateUID () {
