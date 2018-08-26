@@ -45,7 +45,7 @@ function mapStateToProps({ questions, authedUser }){
 
     const answered = Object.keys(questions)
     .filter( q => (questions[q].optionOne.votes.includes(authedUser) || questions[q].optionTwo.votes.includes(authedUser)))
-    .sort((c,d) => (questions[d].timestamp - questions[c].timestamp))
+    .sort((d,c) => (questions[d].timestamp - questions[c].timestamp))
 
     return{
         authedUser,
