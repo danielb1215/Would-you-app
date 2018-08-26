@@ -3,11 +3,13 @@ import { connect } from 'react-redux'
 import Login from './Login'
 import {Form, Panel, Button, FormGroup, FormControl } from 'react-bootstrap'
 import { handleAddQuestion } from "../actions/questions";
+import { Redirect } from 'react-router-dom'
 
 class NewQuestion extends Component {
     state = {
         optionOne: '',
         optionTwo: '',
+        home: false,
     }
     handleOptionOne = (e) => {
         const text = e.target.value
@@ -15,7 +17,6 @@ class NewQuestion extends Component {
         this.setState(() => ({
             optionOne: text
         }))
-        console.log(this.state)
 
     }
     handleOptiontwo = (e) => {
@@ -24,7 +25,6 @@ class NewQuestion extends Component {
         this.setState(() => ({
             optionTwo: text
         }))
-        console.log(this.state)
 
     }
     handleSubmit = (e) => {
@@ -33,18 +33,20 @@ class NewQuestion extends Component {
         const { optionOne, optionTwo } = this.state
         const { dispatch, authedUser} = this.props
         dispatch(handleAddQuestion(optionOne, optionTwo, authedUser))
-
-        console.log('New Question', optionOne, optionTwo)
         
         this.setState(() => ({
             optionOne: '',
             optionTwo: '', 
+            home: true
         }))
 
         alert('Your question have been added successfully!')
     }
     render(){
-        const { optionOne, optionTwo } = this.state
+        const { optionOne, optionTwo, home } = this.state      
+        if( home === true){
+            return <Redirect to={'/'}/>
+        } 
         return(        
             <div>
                 {this.props.authedUser === null
@@ -64,7 +66,9 @@ class NewQuestion extends Component {
                             <FormGroup>
                                 <FormControl type='text' placeholder='Enter Option Two Text Here' value={optionTwo} onChange={this.handleOptiontwo} />
                             </FormGroup>
-                            <Button type="submit">Submit</Button>
+                            <Button 
+                            type="submit"
+                            disabled={optionOne === '' , optionTwo === ''} >Submit</Button>
                         </Form>
                     </Panel.Body>
                 </Panel>
