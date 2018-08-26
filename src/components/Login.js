@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleSetAuthedUser } from '../actions/authedUser'
-import { Jumbotron, FormControl, FormGroup, Image } from 'react-bootstrap'
+import { Jumbotron, FormControl, FormGroup } from 'react-bootstrap'
 
 class Login extends Component{
     handleChange = (event) => {
@@ -9,10 +9,7 @@ class Login extends Component{
        dispatch(handleSetAuthedUser(event))
     }   
     render(){
-        const users = Object.values(this.props.users)
-        if( this.props.try === 'yes'){
-            alert('You should Login First!')
-        } 
+        const users = Object.values(this.props.users) 
         return(
             <div className='container'>
                 <Jumbotron>
@@ -23,7 +20,6 @@ class Login extends Component{
                             <FormControl componentClass='select' onChange={(event) => this.handleChange(event.target.value)}>
                                 <option>Select user</option>
                                 { users.map((user) => (
-                                    <Image src={user.avatarURL}  />,
                                     <option src={user.avatarURL} key={user.id} value={user.id}>{user.name}</option>
                                 ))
                                 }

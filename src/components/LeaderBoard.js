@@ -1,18 +1,16 @@
 import React, { Component } from 'react' 
 import { connect } from 'react-redux'
 import { Panel, Grid, Row, Col, Image} from 'react-bootstrap'
-import Login from './Login'
-
+import { Redirect } from 'react-router-dom'
 
 class LeaderBoard extends Component{    
     render(){
-        const {  authedUser } = this.props
         const sortingUsers = Object.keys(this.props.users).map((x) => this.props.users[x])
         .sort((b,a) => (Object.keys(a.answers).length + a.questions.length) - (Object.keys(b.answers).length + b.questions.length))
         return(
             <div>
             {this.props.authedUser === null
-                ?<Login try='yes'/>
+                ?<Redirect to='/'/>
                 :<div>
                     {
                         sortingUsers.map((user) =>(

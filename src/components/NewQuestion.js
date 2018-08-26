@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Login from './Login'
 import {Form, Panel, Button, FormGroup, FormControl } from 'react-bootstrap'
 import { handleAddQuestion } from "../actions/questions";
 import { Redirect } from 'react-router-dom'
@@ -50,7 +49,7 @@ class NewQuestion extends Component {
         return(        
             <div>
                 {this.props.authedUser === null
-                ? <Login try='yes'/>
+                ? <Redirect to='/'/>
                 : 
                 <div>
                 <Panel>

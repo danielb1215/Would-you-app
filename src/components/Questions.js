@@ -14,7 +14,7 @@ class Questions extends Component{
         }
         return(
             <div> 
-            <Link to={`/question/${id}`} >
+            <Link to={`/questions/${id}`} >
                 <Panel>
                     <Panel.Heading>{author} asks .. </Panel.Heading>
                     <Panel.Body>
