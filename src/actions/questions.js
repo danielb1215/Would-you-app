@@ -5,7 +5,6 @@ export const VOTE = 'VOTE';
 export const ADD_QUESTION = 'ADD_QUESTION'
 
 
-
 export function receiveQuestions (questions){
     return{
         type: RECEIVE_QUESTIONS,

@@ -1,6 +1,5 @@
-import { RECEIVE_USERS } from '../actions/users'
-const VOTE = 'VOTE'
-const ADD_QUESTION = 'ADD_QUESTION'
+import { RECEIVE_USERS, VOTE, ADD_QUESTION } from '../actions/users'
+
 export default function users (state = {}, action ){
     switch(action.type){
         case RECEIVE_USERS:
@@ -17,7 +16,7 @@ export default function users (state = {}, action ){
                     ...state[action.authedUser].answers,
                     [action.qid]: action.answer,
                 },
-                },
+                }, 
             }
         case ADD_QUESTION:
             return{
