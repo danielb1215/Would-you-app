@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Panel, Grid, Col, Row, Image, Form, Checkbox, FormGroup, ProgressBar } from 'react-bootstrap'
-
+import { Link } from 'react-router-dom'
 
 class Answered extends Component{
 
@@ -22,41 +22,45 @@ class Answered extends Component{
             return <p>This question doesn't exist</p>
         }
          return(
-            <div>                
-                <Panel>
-                    <Panel.Heading>{author} asks .. </Panel.Heading>
-                    <Panel.Body>
-                        <Grid>
-                            <Row>
-                                <Col xs={4} md={4}>
-                                    <Image src={imagen} circle />
-                                </Col>
-                                <Col xs={6} md={6}>
-                                { rtaOptionOne === true 
-                                  ?(<Form horizontal>
-                                    <FormGroup >
-                                    <Checkbox  validationState="success" checked readOnly>{optionOne}</Checkbox>
-                                    <ProgressBar now={porcentOne} label={lengthOne + ' Out of ' + totalVotes + 'Votes ' + `${porcentOne}%`} />
-                                    <Checkbox readOnly>{optionTwo}</Checkbox>
-                                    <ProgressBar now={porcentTwo} label={lengthTwo + ' Out of ' + totalVotes + 'Votes ' + `${porcentTwo}%`} />
-                                    </FormGroup>                                        
-                                    </Form> )
-                                  :(<Form horizontal>
-                                    <FormGroup>
-                                        <Checkbox readOnly>{optionOne}</Checkbox>
+             <div>
+                 {this.props.authedUser === null
+                ?<Link to={'/'} />
+                :<div>                
+                    <Panel>
+                        <Panel.Heading>{author} asks .. </Panel.Heading>
+                        <Panel.Body>
+                            <Grid>
+                                <Row>
+                                    <Col xs={4} md={4}>
+                                        <Image src={imagen} circle />
+                                    </Col>
+                                    <Col xs={6} md={6}>
+                                    { rtaOptionOne === true 
+                                    ?(<Form horizontal>
+                                        <FormGroup >
+                                        <Checkbox  validationState="success" checked readOnly>{optionOne}</Checkbox>
                                         <ProgressBar now={porcentOne} label={lengthOne + ' Out of ' + totalVotes + 'Votes ' + `${porcentOne}%`} />
-                                        <Checkbox validationState="success" checked readOnly>{optionTwo}</Checkbox>
+                                        <Checkbox readOnly>{optionTwo}</Checkbox>
                                         <ProgressBar now={porcentTwo} label={lengthTwo + ' Out of ' + totalVotes + 'Votes ' + `${porcentTwo}%`} />
                                         </FormGroup>                                        
-                                    </Form> )
-                                 }                            
-                                </Col>   
-                            </Row>                        
-                        </Grid>
-                    </Panel.Body>
-                </Panel>            
-            </div>
-
+                                        </Form> )
+                                    :(<Form horizontal>
+                                        <FormGroup>
+                                            <Checkbox readOnly>{optionOne}</Checkbox>
+                                            <ProgressBar now={porcentOne} label={lengthOne + ' Out of ' + totalVotes + 'Votes ' + `${porcentOne}%`} />
+                                            <Checkbox validationState="success" checked readOnly>{optionTwo}</Checkbox>
+                                            <ProgressBar now={porcentTwo} label={lengthTwo + ' Out of ' + totalVotes + 'Votes ' + `${porcentTwo}%`} />
+                                            </FormGroup>                                        
+                                        </Form> )
+                                    }                            
+                                    </Col>   
+                                </Row>                        
+                            </Grid>
+                        </Panel.Body>
+                    </Panel>            
+                </div>
+                }
+            </div>                    
         )
       }
     }

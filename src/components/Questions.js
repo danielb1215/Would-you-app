@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import { Panel, Grid, Col, Row, Image } from 'react-bootstrap'
+import { Redirect } from 'react-router-dom'
 
 class Questions extends Component{
     render(){
@@ -13,37 +14,42 @@ class Questions extends Component{
             return <p>This question doesn't exist</p>
         }
         return(
-            <div> 
-            <Link to={`/questions/${id}`} >
-                <Panel>
-                    <Panel.Heading>{author} asks .. </Panel.Heading>
-                    <Panel.Body>
-                        <Grid>
-                            <Row>
-                                <Col xs={4} md={4}>
-                                    <Image src={imagen} circle />
-                                </Col>
-                                <Col xs={8} md={8}>
-                                    <h3>Would you rather</h3>
-                                    <p>{optionOne}</p>
-                                    <button>View Pool</button>
-                                </Col>   
-                            </Row>                        
-                        </Grid>
-                    </Panel.Body>
-                </Panel>     
-            </Link>           
-            </div>
+            <div>
+            {this.props.authedUser === null
+            ?<Link to={'/'}/>
+            :<div> 
+                <Link to={`/questions/${id}`} >
+                    <Panel>
+                        <Panel.Heading>{author} asks .. </Panel.Heading>
+                        <Panel.Body>
+                            <Grid>
+                                <Row>
+                                    <Col xs={4} md={4}>
+                                        <Image src={imagen} circle />
+                                    </Col>
+                                    <Col xs={8} md={8}>
+                                        <h3>Would you rather</h3>
+                                        <p>{optionOne}</p>
+                                        <button>View Pool</button>
+                                    </Col>   
+                                </Row>                        
+                            </Grid>
+                        </Panel.Body>
+                    </Panel>     
+                </Link>           
+             </div>}
+             </div>
 
         )
     }
  }
 
 
-function mapStateToProps({ questions, users }){
+function mapStateToProps({ questions, users, authedUser }){
     return{
         questions,
-        users        
+        users,
+        authedUser        
     }
 }
 

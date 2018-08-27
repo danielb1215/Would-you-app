@@ -13,9 +13,10 @@ import NoMatch from './NoMatch'
 
 class App extends Component {
   componentDidMount(){
-    this.props.dispatch(handleInitialData())    
+    this.props.dispatch(handleInitialData())        
   }
-  render() {
+
+  render() { 
     return (
       <Router>
         <Fragment>
@@ -27,7 +28,7 @@ class App extends Component {
             <Route path='/' exact component={Dashboard} />
             <Route path='/new' exact component={NewQuestion} />
             <Route path='/leaderboard' exact component={LeaderBoard} />
-            <Route path='/questions/:id' component={Question} />
+            <Route path='/questions/:id' exact component={Question} />
             <Route path='/login' exact component={Login} />
             <Route component={NoMatch} />
           </Switch>  
