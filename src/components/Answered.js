@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Panel, Grid, Col, Row, Image, Form, Checkbox, FormGroup, ProgressBar } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import Login from './Login'
 
 class Answered extends Component{
 
@@ -18,13 +18,15 @@ class Answered extends Component{
         const totalVotes = (lengthOne + lengthTwo)
         const porcentOne = (100 * lengthOne)/ totalVotes 
         const porcentTwo = (100 * lengthTwo)/ totalVotes 
-        if(questions === null ){
+        const textOne = `${lengthOne} Out of totalVotes Votes ${porcentOne}%`
+        const textTwo = `${lengthTwo} Out of totalVotes Votes ${porcentTwo}%`
+        if(questions === null ){ 
             return <p>This question doesn't exist</p>
         }
          return(
              <div>
                  {this.props.authedUser === null
-                ?<Link to={'/'} />
+                ?<Login/>
                 :<div>                
                     <Panel>
                         <Panel.Heading>{author} asks .. </Panel.Heading>
@@ -39,17 +41,17 @@ class Answered extends Component{
                                     ?(<Form horizontal>
                                         <FormGroup >
                                         <Checkbox  validationState="success" checked readOnly>{optionOne}</Checkbox>
-                                        <ProgressBar now={porcentOne} label={lengthOne + ' Out of ' + totalVotes + 'Votes ' + `${porcentOne}%`} />
+                                        <ProgressBar now={porcentOne} label={textOne} />
                                         <Checkbox readOnly>{optionTwo}</Checkbox>
-                                        <ProgressBar now={porcentTwo} label={lengthTwo + ' Out of ' + totalVotes + 'Votes ' + `${porcentTwo}%`} />
+                                        <ProgressBar now={porcentTwo} label={textTwo} />
                                         </FormGroup>                                        
                                         </Form> )
                                     :(<Form horizontal>
                                         <FormGroup>
                                             <Checkbox readOnly>{optionOne}</Checkbox>
-                                            <ProgressBar now={porcentOne} label={lengthOne + ' Out of ' + totalVotes + 'Votes ' + `${porcentOne}%`} />
+                                            <ProgressBar now={porcentOne} label={textOne} />
                                             <Checkbox validationState="success" checked readOnly>{optionTwo}</Checkbox>
-                                            <ProgressBar now={porcentTwo} label={lengthTwo + ' Out of ' + totalVotes + 'Votes ' + `${porcentTwo}%`} />
+                                            <ProgressBar now={porcentTwo} label={textTwo} />
                                             </FormGroup>                                        
                                         </Form> )
                                     }                            

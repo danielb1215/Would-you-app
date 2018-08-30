@@ -6,7 +6,7 @@ class NoMatch extends Component{
         return(
             <div>
             {this.props.authedUser === null
-                ?<Redirect to='/'/>
+                ?<Redirect to='/login'/>
                 :<h1>404 Page no found</h1>
             }    
             </div>

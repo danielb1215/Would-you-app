@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
-import { Panel, Grid, Col, Row, Image } from 'react-bootstrap'
-import { Redirect } from 'react-router-dom'
+import { Panel, Grid, Col, Row, Image } from 'react-bootstrap'  
+import Login from './Login'
 
 class Questions extends Component{
     render(){
@@ -16,7 +16,7 @@ class Questions extends Component{
         return(
             <div>
             {this.props.authedUser === null
-            ?<Link to={'/'}/>
+            ?<Login />
             :<div> 
                 <Link to={`/questions/${id}`} >
                     <Panel>

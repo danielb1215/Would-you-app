@@ -22,7 +22,7 @@ class UnAnswered extends Component{
             return(
                <div> 
                 {this.props.authedUser === null
-                    ?<Link to={'/'} />
+                    ?<Link to={'/login'} />
                     :<div>                
                         <Panel>
                             <Panel.Heading>{author} asks .. </Panel.Heading>

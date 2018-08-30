@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import {Form, Panel, Button, FormGroup, FormControl } from 'react-bootstrap'
 import { handleAddQuestion } from "../actions/questions";
 import { Redirect } from 'react-router-dom'
+import Login from './Login'
 
 class NewQuestion extends Component {
     state = {
@@ -49,9 +50,8 @@ class NewQuestion extends Component {
         return(        
             <div>
                 {this.props.authedUser === null
-                ? <Redirect to='/'/>
-                : 
-                <div>
+                ?<Login/>
+                :<div>
                 <Panel>
                     <Panel.Heading><h1>Create New Question</h1></Panel.Heading>
                     <Panel.Body>
@@ -67,7 +67,7 @@ class NewQuestion extends Component {
                             </FormGroup>
                             <Button 
                             type="submit"
-                            disabled={optionOne === '' , optionTwo === ''} >Submit</Button>
+                            disabled={optionOne === '' && optionTwo === ''} >Submit</Button>
                         </Form>
                     </Panel.Body>
                 </Panel>

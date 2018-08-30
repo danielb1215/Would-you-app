@@ -4,12 +4,9 @@ import { withRouter } from 'react-router-dom'
 import { handleVote } from '../actions/questions'
 import UnAnswered from './UnAnswered'
 import Answered from './Answered'
-import { Redirect, Link } from 'react-router-dom'
+import Login from './Login'
 
 class Questions extends Component{
-    componentDidMount(){
-        console.log(this.props)
-    }
     
     handleChange = (option) => {
         const { dispatch } = this.props
@@ -18,13 +15,10 @@ class Questions extends Component{
     render(){
 
         const { questions, id, authedUser } = this.props
-        if( authedUser === null ){
-            
-           
+        if( authedUser === null ){            
             return(
                 <div>
-                {this.props.history.push('/')}
-                <Redirect  to='/' />
+                <Login/>
                 </div>
             )
             

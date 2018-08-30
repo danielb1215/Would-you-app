@@ -1,7 +1,7 @@
 import React, { Component } from 'react' 
 import { connect } from 'react-redux'
 import { Panel, Grid, Row, Col, Image} from 'react-bootstrap'
-import { Redirect } from 'react-router-dom'
+import Login from './Login'
 
 class LeaderBoard extends Component{    
     render(){
@@ -10,7 +10,7 @@ class LeaderBoard extends Component{
         return(
             <div>
             {this.props.authedUser === null
-                ?<Redirect to='/'/>
+                ?<Login />
                 :<div>
                     {
                         sortingUsers.map((user) =>(
