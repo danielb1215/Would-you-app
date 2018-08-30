@@ -5,6 +5,7 @@ import { handleVote } from '../actions/questions'
 import UnAnswered from './UnAnswered'
 import Answered from './Answered'
 import Login from './Login'
+import { Redirect } from 'react-router-dom' 
 
 class Questions extends Component{
     
@@ -22,6 +23,9 @@ class Questions extends Component{
                 </div>
             )
             
+        }
+        if(questions[id]===undefined){
+            return <Redirect to='/404'/> 
         }else{
         const rtaOptionOne = questions[id].optionOne.votes.includes(authedUser)
         const rtaOptionTwo = questions[id].optionTwo.votes.includes(authedUser)

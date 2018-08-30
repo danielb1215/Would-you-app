@@ -26,7 +26,7 @@ class App extends Component {
           <Nav/>
           <Switch>
             <Route path='/' exact component={Dashboard} />
-            <Route path='/new' exact component={NewQuestion} />
+            <Route path='/add' exact component={NewQuestion} />
             <Route path='/leaderboard' exact component={LeaderBoard} />
             <Route path='/questions/:id' exact component={Question} />
             <Route path='/login' exact component={Login} />
